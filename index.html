@@ -69,7 +69,7 @@
   <div>
     <label for="text-input">Did you get your photos printed?</label>
     <textarea id="text-input" placeholder="Enter text"></textarea>
-    <button id="btn-input" title="Generate text">Bogos binted</button>
+    <button id="btn-input" title="Generate text (Enter)">Bogos binted</button>
   </div>
   <div>
     <label for="text-result">Vorp?</label>
@@ -91,6 +91,7 @@
       textOutput.value = textInput.value.split(' ').map(word => `🅱️${word.substring(1)}`).join(' ');
     };
     
+    textOutput.addEventListener('click', () => textOutput.select())
     btnInput.addEventListener('click', () => convertText());
     textInput.addEventListener('keypress', (e) => {
       if (e.key !== 'Enter') return;
