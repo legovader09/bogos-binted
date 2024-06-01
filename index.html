@@ -34,6 +34,7 @@
       display: block;
       padding: .5rem;
       color: black;
+      display: inline;
     }
 
     button:hover {
@@ -55,28 +56,26 @@
       opacity: 0;
     }
 
-    #btn-copy,
-    #text-copied {
+    .text-inline {
       display: inline;
-    }
-
-    #text-copied {
-      color: green;
     }
   </style>
 </head>
 <body>
   <div>
     <label for="text-input">Did you get your photos printed?</label>
-    <textarea id="text-input" placeholder="Enter text"></textarea>
-    <button id="btn-input" title="Generate text (Enter)">Bogos binted</button>
+    <textarea id="text-input" placeholder="Enter text">No I haven't yet</textarea>
+    <section>
+      <button id="btn-input" title="Generate text (Enter)">Bogos binted</button>
+      <p class="text-inline" style="color: grey;">(Press Enter)</p>
+    </section>
   </div>
   <div>
     <label for="text-result">Vorp?</label>
     <textarea id="text-result" readonly></textarea>
     <section>
       <button id="btn-copy" title="Copy text">👽</button>
-      <p id="text-copied" class="hidden">Text copied to clipboard</p>
+      <p class="text-inline hidden" id="text-copied" style="color: green;">Text copied to clipboard</p>
     </section>
   </div>
 
@@ -89,7 +88,11 @@
 
     const convertText = () => {
       textOutput.value = textInput.value.split(' ').map(word => `🅱️${word.substring(1)}`).join(' ');
+      textOutput.focus();
+      textOutput.select();
     };
+    
+    convertText();
     
     textOutput.addEventListener('click', () => textOutput.select())
     btnInput.addEventListener('click', () => convertText());
