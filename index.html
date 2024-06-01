@@ -92,7 +92,9 @@
       textOutput.select();
     };
     
-    convertText();
+    textInput.focus();
+    textInput.select();
+    textOutput.value = textInput.value.split(' ').map(word => `🅱️${word.substring(1)}`).join(' ');
     
     textOutput.addEventListener('click', () => textOutput.select())
     btnInput.addEventListener('click', () => convertText());
